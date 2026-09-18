@@ -2,6 +2,8 @@ import { ModelProviderEnum, ModelProviderType } from '../../types'
 import { defineProvider } from '../registry'
 import Ionet from './models/ionet'
 
+const IONET_API_HOST = 'https://api.intelligence.io.solutions/api/v1'
+
 export const ionetProvider = defineProvider({
   id: ModelProviderEnum.Ionet,
   name: 'IO Intelligence',
@@ -12,7 +14,7 @@ export const ionetProvider = defineProvider({
     docs: 'https://docs.io.net/',
   },
   defaultSettings: {
-    apiHost: 'https://api.intelligence.io.solutions/api',
+    apiHost: IONET_API_HOST,
     models: [
       {
         modelId: 'deepseek-ai/DeepSeek-V4.1-Flash',
@@ -76,6 +78,7 @@ export const ionetProvider = defineProvider({
     return new Ionet(
       {
         apiKey: config.effectiveApiKey,
+        apiHost: config.formattedApiHost || IONET_API_HOST,
         model: config.model,
         temperature: config.settings.temperature,
         topP: config.settings.topP,
