@@ -11,7 +11,7 @@ export const ionetProvider = defineProvider({
   urls: {
     website: 'https://io.net/',
     apiKey: 'https://cloud.io.net/',
-    docs: 'https://docs.io.net/',
+    docs: 'https://io.net/docs/reference/ai-models/get-started-with-io-intelligence-api',
   },
   defaultSettings: {
     apiHost: IONET_API_HOST,
@@ -84,6 +84,7 @@ export const ionetProvider = defineProvider({
         topP: config.settings.topP,
         maxOutputTokens: config.settings.maxTokens,
         stream: config.settings.stream,
+        useProxy: config.providerSetting.useProxy || false,
         listModelsFallback: config.providerSetting.models || ionetProvider.defaultSettings?.models,
       },
       config.dependencies
