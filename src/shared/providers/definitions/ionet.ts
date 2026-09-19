@@ -78,12 +78,13 @@ export const ionetProvider = defineProvider({
     return new Ionet(
       {
         apiKey: config.effectiveApiKey,
-        apiHost: config.formattedApiHost || IONET_API_HOST,
+        apiHost: (config.formattedApiHost || IONET_API_HOST).replace(/\/+$/, ''),
         model: config.model,
         temperature: config.settings.temperature,
         topP: config.settings.topP,
         maxOutputTokens: config.settings.maxTokens,
         stream: config.settings.stream,
+        listModelsFallback: config.providerSetting.models || ionetProvider.defaultSettings?.models,
       },
       config.dependencies
     )
